@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro personal</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>  
+  
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <a type="button" class="btn btn-dark" href="/listado">
+                Listado de posteos
+              </a>
+              <a type="button" class="btn btn-success" href="/agregar">
+                Agregar posteo
+              </a>
+            <!-- <th scope="col">Id</th> -->
+            <th scope="col">Título</th>
+            <th scope="col">Contenido</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>          
+            <% posteos.forEach((item) => { %>
+            <tr>
+              <!-- <th scope="row"><%= item.id %></th> -->
+              <td><%= item.titulo %></td>
+              <td><%= item.contenido %></td>            
+              <td>
+                  <button type="button" class="btn btn-warning">
+                    Editar</button>
+              </td>
+              <td>
+              <a type="button" class="btn btn-danger" href="/eliminar/<%= item.id %>">
+                Eliminar
+              </a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+        
+      </table> 
+    
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body> 
+</html>
