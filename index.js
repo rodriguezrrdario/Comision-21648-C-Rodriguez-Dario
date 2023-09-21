@@ -23,10 +23,14 @@ app.listen(PUERTO, () => {
 
 
 // METODOS GET
- app.get('/', async function (req, res) {
+app.get('/', async function (req, res) {
     const posteos = await posteoModel.findAll(); 
     res.render('inicio', {posteos: posteos});
    // res.render('inicio.ejs');
+}) 
+
+app.get('/inicio', function (req, res) {
+    res.render('inicio.ejs')
 }) 
 
 app.get('/agregar', function (req, res) {
@@ -39,8 +43,40 @@ app.get('/listado', async function (req, res) {
     //res.render('listado.ejs')
 }) 
 
-app.get('/inicio', function (req, res) {
-    res.render('inicio.ejs')
+app.get('/eliminar/:id', async function (req, res) {
+    const { id } = req.params;
+
+    try {
+        const eliminarPosteo = await posteoModel.destroy({
+            where: {id: id}
+        })  
+
+        if (eliminarPosteo) {
+            res.redirect('/');
+        } else {
+            res.send('No se pudo eliminar el posteo :(')
+        }
+    } catch (err) {
+        res.send('ERROR: No se pudo eliminar el posteo: ' + err)
+    }
+})
+
+app.get('/editar/:id', async function (req, res) {
+    const { id } = req.params;
+
+    try {
+        const posteo = await posteoModel.findOne({
+            where: { id: id }
+        })
+
+        if (posteo) {
+            res.render('editar', { posteo: posteo });
+        } else {
+            res.send('No se pudo encontrar el posteo :(')
+        }
+    } catch (err) {
+        res.send('Se produjo un error al buscar el posteo: ' + err)
+    }
 }) 
 
 
@@ -68,47 +104,6 @@ app.post('/agregar', async function (req, res) {
     }
 }) 
  
-
- app.get('/eliminar/:id', async function (req, res) {
-    const { id } = req.params;
-
-    try {
-        const eliminarPosteo = await posteoModel.destroy({
-            where: {id: id}
-        })  
-
-        if (eliminarPosteo) {
-            res.redirect('/');
-        } else {
-            res.send('No se pudo eliminarr el posteo :(')
-        }
-    } catch (err) {
-        res.send('ERROR: No se pudo eliminar el posteo: ' + err)
-    }
-})
-
-
- /*
- app.get('/editar/:id', async function (req, res) {
-    const { id } = req.params;
-
-    try {
-        const posteo = await posteoModel.findOne({
-            where: {
-                id: id
-            }
-        })
-
-        if (posteo) {
-            res.render('editar', { posteo: posteo });
-        } else {
-            res.send('No se pudo encontrar el posteo :(')
-        }
-    } catch (err) {
-        res.send('Se produjo un error al buscar el posteo: ' + err)
-    }
-}) 
-/*
 app.post('/editar/:id', async function (req, res) {
     const { id } = req.params;
     const { posteo, contenido } = req.body
@@ -119,9 +114,7 @@ app.post('/editar/:id', async function (req, res) {
                 titulo: posteo,
                 contenido: contenido
             }, {
-                where: {
-                    id: id
-                }
+                where: { id: id }
             }
         )
         
@@ -134,4 +127,3 @@ app.post('/editar/:id', async function (req, res) {
         res.send('ERROR al actualizar el posteo: ' + err)
     }
 }) 
- */
