@@ -23,14 +23,10 @@ app.listen(PUERTO, () => {
 
 
 // METODOS GET
-app.get('/', async function (req, res) {
+ app.get('/', async function (req, res) {
     const posteos = await posteoModel.findAll(); 
     res.render('inicio', {posteos: posteos});
    // res.render('inicio.ejs');
-}) 
-
-app.get('/inicio', function (req, res) {
-    res.render('inicio.ejs')
 }) 
 
 app.get('/agregar', function (req, res) {
@@ -43,7 +39,37 @@ app.get('/listado', async function (req, res) {
     //res.render('listado.ejs')
 }) 
 
-app.get('/eliminar/:id', async function (req, res) {
+app.get('/inicio', function (req, res) {
+    res.render('inicio.ejs')
+}) 
+
+
+
+// METODOS POST
+app.post('/agregar', async function (req, res) {    
+    const { posteo, contenido, imagen } = req.body
+//console.log(req.body)
+   //res.send('Posteo agregado al foro con exito: ' + posteo)
+
+    try {
+        const nuevoPosteo = await posteoModel.create({
+            titulo: posteo, 
+            contenido: contenido,
+            imagen: imagen
+        });
+
+        if (nuevoPosteo) {
+            res.redirect('/');
+        } else {
+            res.send('No se pudo agregar el posteo:(')
+        }
+    } catch (err) {
+        res.send('Se produjo un error al cargar el posteo: ' + err)
+    }
+}) 
+ 
+
+ app.get('/eliminar/:id', async function (req, res) {
     const { id } = req.params;
 
     try {
@@ -54,14 +80,15 @@ app.get('/eliminar/:id', async function (req, res) {
         if (eliminarPosteo) {
             res.redirect('/');
         } else {
-            res.send('No se pudo eliminar el posteo :(')
+            res.send('No se pudo eliminarr el posteo :(')
         }
     } catch (err) {
         res.send('ERROR: No se pudo eliminar el posteo: ' + err)
     }
 })
 
-app.get('/editar/:id', async function (req, res) {
+
+ app.get('/editar/:id', async function (req, res) {
     const { id } = req.params;
 
     try {
@@ -81,38 +108,16 @@ app.get('/editar/:id', async function (req, res) {
 
 
 
-// METODOS POST
-app.post('/agregar', async function (req, res) {    
-    const { posteo, contenido } = req.body
-//console.log(req.body)
-   //res.send('Posteo agregado al foro con exito: ' + posteo)
-
-    try {
-        const nuevoPosteo = await posteoModel.create({
-            titulo: posteo, 
-            contenido: contenido,
-            imagen: 'https://image.shutterstock.com/image-photo/image-260nw-643080895.jpg'
-        });
-
-        if (nuevoPosteo) {
-            res.redirect('/');
-        } else {
-            res.send('No se pudo agregar el posteo:(')
-        }
-    } catch (err) {
-        res.send('Se produjo un error al cargar el posteo: ' + err)
-    }
-}) 
- 
 app.post('/editar/:id', async function (req, res) {
     const { id } = req.params;
-    const { posteo, contenido } = req.body
+    const { posteo, contenido, imagen } = req.body
 
     try {
         const posteoActualizado = await posteoModel.update(
             {
                 titulo: posteo,
-                contenido: contenido
+                contenido: contenido,
+                imagen: imagen
             }, {
                 where: { id: id }
             }
@@ -126,4 +131,4 @@ app.post('/editar/:id', async function (req, res) {
     } catch (err) {
         res.send('ERROR al actualizar el posteo: ' + err)
     }
-}) 
+})

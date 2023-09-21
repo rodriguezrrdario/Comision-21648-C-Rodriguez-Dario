@@ -10,7 +10,7 @@
     <div style="padding: 50px;">
         <div class="card">
             <div class="card-header">
-                 Editar posteo: <%= posteo.id %>
+                 Editar posteo: <%= posteo.titulo %>
             </div>
             <div class="card-body">
                 <form method="POST">
@@ -21,6 +21,10 @@
                     <div class="mb-3">
                         <label for="contenido" class="form-label">Contenido</label>
                        <input type="text" class="form-control" id="contenido" name="contenido" value="<%= posteo.contenido %>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="contenido" class="form-label">Imagen (opcional)</label>
+                        <input type="text" class="form-control" id="imagen" name="imagen" value="<%= posteo.imagen %>">
                     </div>
 
                     <button type="submit" class="btn btn-primary">
