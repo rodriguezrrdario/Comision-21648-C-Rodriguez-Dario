@@ -5,18 +5,26 @@ const express = require('express')
 const {sequelize, DBTest} = require('./database.js');
 const posteoModel = require('./posteoModel.js');
 
-const app = express()
-const PUERTO = process.env.PUERTO || 3000
+ const morgan = require('morgan');
+ const path = require('node:path'); 
 
+const app = express()
+const PUERTO = process.env.PUERTO || 4000
+
+//configuración para el motor de plantillas
 app.set('view engine', 'ejs');
 
+//Middlewares
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+app.use(morgan('dev'));
+app.use(express.urlencoded({ extended: false}));
+
+app.set('views', path.join(__dirname, 'views'));
 
 DBTest()
 
 app.listen(PUERTO, () => {
-    console.log(`El servidor está corriendo en el puerto.... ${PUERTO}`)
+    console.log(`El servidor está corriendo y escuchando en el puerto.... ${PUERTO}`)
 })
 
 
