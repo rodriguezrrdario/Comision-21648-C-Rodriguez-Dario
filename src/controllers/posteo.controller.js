@@ -1,4 +1,5 @@
 const Posteo = require('../models/posteo.model');
+
 const ctrlPosteo = {};
 
 // GET ALL (Trae todos los posteos del foro)
@@ -9,8 +10,8 @@ ctrlPosteo.getAllPosteos = async (req, res) => {
     } catch (error) {
         console.log('Error al buscar los posteos del foro', error);
         return res
-            .status(400).send({
-                message: 'No se encuentran posteos en la Base de datos.'});
+            .status(400)
+            .send({message: 'No se encuentran posteos en la Base de datos.'});
     }
 }
 
@@ -32,6 +33,9 @@ try {
     return res.status(400).send({message: 'Error al buscar el posteo.'});
 }
 }
+    
+
+
 
 
 // POST (Crea un posteo)
@@ -60,12 +64,10 @@ ctrlPosteo.postPosteo = async (req, res) => {
     }
 };
 
-
 // PUT (Edita un posteo)
 ctrlPosteo.updatePosteo = async (req, res) => {
-    const { id } = req.params;
+    const {id } = req.params;
     const {titulo, contenido} = req.body;
-
     if(!titulo || !contenido){
         return res.status(400).send({
             message: 'Por favor ingrese los datos requeridos: (Título y contenido)'});
@@ -73,7 +75,7 @@ ctrlPosteo.updatePosteo = async (req, res) => {
         try{
             const posteoBody = {
                 titulo: titulo,
-                contenido: contenido
+                contenido: contenido,
             };
             const updatePosteo = await Posteo.update({posteoBody}, {where: {id: id}});
         } catch (error) {
@@ -86,18 +88,18 @@ ctrlPosteo.updatePosteo = async (req, res) => {
 
 // DELETE (Elimina un posteo)
 ctrlPosteo.deletePosteo = async (req, res) => {
-    const {id }= req.params;
+    const {id} = req.params;
 try {
     const posteo = await Posteo.destroy({where: {id : id}});
     // valida si el posteo existe en la Base de datos
     if (!posteo) {
         return res
-            .status(400).send({
-            message: 'Posteo no encontrado en la Base de datos.'});
+            .status(400)
+            .send({message: 'Posteo no encontrado en la Base de datos.'});
     }else {
         return res.status(200).send({message: 'Posteo eliminado con exito!'});
     }    
-} catch (error){
+} catch {
     console.log('Error en busqueda de posteo a eliminar ', error);
     return res.status(400).send({message: 'Error al buscar el posteo.'});
 }

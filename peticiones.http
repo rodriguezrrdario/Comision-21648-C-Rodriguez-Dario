@@ -5,7 +5,7 @@ GET http://localhost:3000/posteo
 
 
 ### GET POSTEO POR ID
-GET http://localhost:3000/posteo/14
+GET http://localhost:3000/posteo/28
 
 
 ### POST CREAR UN POSTEO
