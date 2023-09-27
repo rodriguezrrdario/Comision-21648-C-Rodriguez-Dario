@@ -9,10 +9,9 @@ const Posteo = sequelize.define('Posteo', {
         type: DataTypes.STRING,
     },
     contenido: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
     }
-  
-}, {
+ }, {
     timestamps: false,
     tableName: 'posteos',
 });

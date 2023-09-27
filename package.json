@@ -1,12 +1,12 @@
 {
   "name": "proyecto-final",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "/src/index.jsindex.js",
   "scripts": {
     "dev": "nodemon ./src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Rodriguez R.R. Dario",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",

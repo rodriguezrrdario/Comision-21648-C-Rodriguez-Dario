@@ -12,13 +12,11 @@ posteoRoutes.get('/posteo/:id', ctrlPosteo.getPosteoById);
 // POST (Crea un posteo)
 posteoRoutes.post('/posteo', ctrlPosteo.postPosteo);
 
-
 // PUT (Edita un posteo)
 posteoRoutes.put('/posteo/:id', ctrlPosteo.updatePosteo);
 
 // DELETE (Elimina un posteo)
 posteoRoutes.delete('/posteo/:id', ctrlPosteo.deletePosteo);
-
 
 module.exports = posteoRoutes;
 

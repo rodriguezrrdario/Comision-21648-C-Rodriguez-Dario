@@ -66,13 +66,34 @@ ctrlPosteo.postPosteo = async (req, res) => {
 
 // PUT (Edita un posteo)
 ctrlPosteo.updatePosteo = async (req, res) => {
-    const {id } = req.params;
-    const {titulo, contenido} = req.body;
+    const { id } = req.params;
+    const { titulo, contenido} = req.body;
+    // Primero chequea que el Titulo del posteo y el contenido no sean nulos
     if(!titulo || !contenido){
-        return res.status(400).send({
+        return res.status(404).send({
             message: 'Por favor ingrese los datos requeridos: (Título y contenido)'});
-    } else {
-        try{
+    }
+    // Despues chequea que el ID existe en la Base de datos
+    const posteo = await Posteo.findOne({where: {id : id}});
+    if (!posteo) {
+        return res
+            .status(409).send({
+            message: 'Posteo no encontrado en la Base de datos.'});
+    }else {
+        const updatePosteo = Posteo.update(
+                {
+                titulo: titulo,
+                contenido: contenido,
+                },
+                {where: {id: id} }
+            );
+            return res.status(200).send({
+                message: 'Posteo actualizado con exito.'});
+    }
+};
+                
+            
+        /* try{
             const posteoBody = {
                 titulo: titulo,
                 contenido: contenido,
@@ -82,8 +103,8 @@ ctrlPosteo.updatePosteo = async (req, res) => {
         console.log('Error al intentar editar el posteo', error);
     return res.status(400).send({message: 'Se produjo un error.'});   
         }
-    } 
-};
+    }  
+};*/
 
 
 // DELETE (Elimina un posteo)
