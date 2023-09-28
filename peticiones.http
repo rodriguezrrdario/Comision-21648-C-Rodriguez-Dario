@@ -1,5 +1,6 @@
 ###extensión Rest Client instalada para poder Probar peticiones
 
+
 ### GET PAGINA DE INICIO
 GET http://localhost:3000
 
