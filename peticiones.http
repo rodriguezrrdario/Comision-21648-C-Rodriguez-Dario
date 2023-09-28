@@ -1,35 +1,35 @@
 ###extensión Rest Client instalada para poder Probar peticiones
 
 
-### GET PAGINA DE INICIO
+### GET PAGINA DE INICIO (OK)
 GET http://localhost:3000
 
-### GET TODOS LOS POSTEOS EN EL MENU EDICION
-GET http://localhost:3000/posteo
+### GET TODOS LOS POSTEOS EN EL MENU EDICION (OK)
+GET http://localhost:3000/menuEdicion
 
 
-### GET POSTEO POR ID
-GET http://localhost:3000/posteo/29
+### GET POSTEO POR ID (OK)
+GET http://localhost:3000/editarPosteo/3
 
 
 ### POST CREAR UN POSTEO
-POST http://localhost:3000/posteo
+POST http://localhost:3000/crearPosteo/8
 Content-Type: application/json
 
 {
-    "titulo":"Almanza",
-    "contenido":"Todo por dos pesos"
+    "titulo":"Titulo de prueba",
+    "contenido":"Contenido de prueba"
 }
 
 
 ### PUT (Editar un posteo)    
-PUT http://localhost:3000/posteo/99
+PUT http://localhost:3000/editarPosteo/2
 Content-Type: application/json
 
 {
-    "titulo":"Kuanip",
-    "contenido":"Barrio loco"
+    "titulo":"Pruebaaaaaa",
+    "contenido":"Probandooooo"
 }
 
 ### DELETE
-DELETE http://localhost:3000/posteo/46
+DELETE http://localhost:3000/borrarPosteo/1

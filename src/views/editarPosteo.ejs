@@ -1,0 +1,71 @@
+<%- include('partials/head') %>
+
+<nav class="navbar bg-body-tertiary" style="padding: 30px">
+    <div class="container-fluid">
+      <form class="d-flex" role="search">
+        <a type="button" class="btn btn-secondary" href="/menuEdicion">
+          Volver
+        </a>
+      </form>
+    </div>
+</nav>
+</br>
+
+<body>
+    <% if(posteo) { %>
+    <div style="padding: 50px;">
+        <div class="card">
+            <div class="card-header">
+                 Editando posteo: <%= posteo.titulo %>
+            </div>
+            <div class="card-body">
+                <form action="/actualizarPosteo" form method="POST">
+                    <input id="id" name="id" value="<%= posteo.id %>" hidden />
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label">Posteos</label>
+                         <input type="text"
+                         class="form-control"
+                         id="titulo"
+                         name="titulo"
+                         value="<%= posteo.titulo %>"
+                         tabindex="1"
+                         required
+                         />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="contenido" class="form-label">Contenido</label>
+                       <input type="text"
+                            class="form-control"
+                            id="contenido"
+                            name="contenido"
+                            value="<%= posteo.contenido %>"
+                            tabindex="2"
+                            required
+                        />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen (opcional)</label>
+                        <input type="text"
+                            class="form-control"
+                            id="imagen"
+                            name="imagen"
+                            value="<%= posteo.imagen %>"
+                            tabindex="3"
+                        />
+                    <img src="<%= posteo.imagen %>">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" tabindex="4">
+                        Guardar
+                    </button>
+                </form>
+            </div>
+        </div>        
+    </div>
+    <% } %>
+
+    <%- include("partials/footer")%>
+  </body>
+</html>

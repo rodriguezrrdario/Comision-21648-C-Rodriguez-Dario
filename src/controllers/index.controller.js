@@ -3,7 +3,7 @@ const controlIndex = {};
 
 // 
 controlIndex.renderIndex = (req, res) => {
-    res.render('inicio', {titlePosteo: 'Inicio del Foro'});
+    res.render('inicio', {miTitulo: 'Inicio del Foro'});
 };
 
 module.exports = {controlIndex};

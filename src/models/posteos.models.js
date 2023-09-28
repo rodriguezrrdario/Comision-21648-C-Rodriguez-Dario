@@ -13,6 +13,9 @@ const Posteo = sequelize.define(
         contenido: {
             type: DataTypes.STRING,
         },
+        imagen: {
+            type: DataTypes.STRING,
+        }
     }, {
         timestamps: false,
         tableName: 'posteos',

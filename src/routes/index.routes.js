@@ -1,4 +1,3 @@
-
 // Instancio el indexRouter para que express lo tome como ruta
 const indexRouter = require('express').Router();
 const { controlIndex }  = require('../controllers/index.controller');

@@ -2,21 +2,22 @@ const posteoRoutes = require('express').Router();
 const {controlPosteos} = require('../controllers/posteo.controller');
 const Posteo = require("../models/posteos.models");
 
-// GET ALL (Trae todos los posteos del foro)
+// ruta GET MenuEdicion (Trae todos los posteos del foro al Menú de edición)
 posteoRoutes.get('/menuEdicion', controlPosteos.getAllPosteos);
 
-/* // GET BY ID (Trae un posteo filtrado por ID)
-posteoRoutes.get('/posteo/:id', ctrlPosteo.getPosteoById);
+// GET BY ID (Trae un posteo filtrado por ID)
+//posteoRoutes.get('/posteo/:id', ctrlPosteo.getPosteoById);
 
+//ruta para Crear un posteo
+posteoRoutes.get("/crearPosteo", controlPosteos.formCrearPosteo);
+posteoRoutes.post("/guardarPosteo", controlPosteos.postPosteo);
 
-// POST (Crea un posteo)
-posteoRoutes.post('/posteo', ctrlPosteo.postPosteo);
+// ruta PUT para actualizar un posteo
+posteoRoutes.get('/editarPosteo/:id', controlPosteos.formEditarPosteo);
+posteoRoutes.post('/actualizarPosteo', controlPosteos.putPosteo);
 
-// PUT (Edita un posteo)
-posteoRoutes.put('/posteo/:id', ctrlPosteo.updatePosteo);
-
-// DELETE (Elimina un posteo)
-posteoRoutes.delete('/posteo/:id', ctrlPosteo.deletePosteo); */
+// ruta DELETE 
+posteoRoutes.get('/borrarPosteo/:id', controlPosteos.borrarPosteo);
 
 module.exports = posteoRoutes;
 

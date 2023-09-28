@@ -1,0 +1,59 @@
+<%- include('partials/head') %>
+
+<body>
+    <nav class="navbar bg-body-tertiary" style="padding: 30px">
+        <div class="container-fluid">
+          <form class="d-flex" role="search">
+            <a type="button" class="btn btn-success" href="/menuEdicion">
+              Volver
+            </a>
+          </form>
+        </div>
+    </nav>
+</br>
+    <div style="padding: 30px;">
+        <div class="card">
+            <div class="card-header">
+               Agregar nuevo posteo:
+            </div>
+            <div class="card-body">
+                <form action="/guardarPosteo" method="POST">
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label">Título</label>
+                        <input type="text"
+                            class="form-control"
+                            id="titulo"
+                            name="titulo"
+                            tabindex="1"
+                            required
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="contenido" class="form-label">Contenido</label>
+                        <input type="text"
+                            class="form-control"
+                            id="contenido"
+                            name="contenido"                         
+                            tabindex="2"
+                            required
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Pegar imagen relacionada al posteo (opcional)</label>
+                        <input type="text"
+                            class="form-control"
+                            id="imagen"
+                            name="imagen"
+                            tabindex="3"
+                        />
+                    </div>
+                    <button type="submit" class="btn btn-primary" tabindex="4">
+                        Guardar
+                    </button>
+                    </form>
+            </div>
+        </div>   
+    </div>
+    <%- include("partials/footer")%>
+</body>
+</html>
