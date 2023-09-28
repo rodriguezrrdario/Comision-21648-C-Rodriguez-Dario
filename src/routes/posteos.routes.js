@@ -1,11 +1,11 @@
 const posteoRoutes = require('express').Router();
-const ctrlPosteo = require('../controllers/posteo.controller.js');
-
+const {controlPosteos} = require('../controllers/posteo.controller');
+const Posteo = require("../models/posteos.models");
 
 // GET ALL (Trae todos los posteos del foro)
-posteoRoutes.get('/posteo', ctrlPosteo.getAllPosteos);
+posteoRoutes.get('/menuEdicion', controlPosteos.getAllPosteos);
 
-// GET BY ID (Trae un posteo filtrado por ID)
+/* // GET BY ID (Trae un posteo filtrado por ID)
 posteoRoutes.get('/posteo/:id', ctrlPosteo.getPosteoById);
 
 
@@ -16,7 +16,7 @@ posteoRoutes.post('/posteo', ctrlPosteo.postPosteo);
 posteoRoutes.put('/posteo/:id', ctrlPosteo.updatePosteo);
 
 // DELETE (Elimina un posteo)
-posteoRoutes.delete('/posteo/:id', ctrlPosteo.deletePosteo);
+posteoRoutes.delete('/posteo/:id', ctrlPosteo.deletePosteo); */
 
 module.exports = posteoRoutes;
 

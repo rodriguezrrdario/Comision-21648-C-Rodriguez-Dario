@@ -1,11 +1,14 @@
 ###extensión Rest Client instalada para poder Probar peticiones
 
-### GET TODOS LOS POSTEOS
+### GET PAGINA DE INICIO
+GET http://localhost:3000
+
+### GET TODOS LOS POSTEOS EN EL MENU EDICION
 GET http://localhost:3000/posteo
 
 
 ### GET POSTEO POR ID
-GET http://localhost:3000/posteo/28
+GET http://localhost:3000/posteo/29
 
 
 ### POST CREAR UN POSTEO
@@ -28,4 +31,4 @@ Content-Type: application/json
 }
 
 ### DELETE
-DELETE http://localhost:3000/posteo/99
+DELETE http://localhost:3000/posteo/46
