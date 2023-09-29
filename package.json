@@ -9,6 +9,7 @@
   "author": "Rodriguez R.R. Dario",
   "license": "ISC",
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
